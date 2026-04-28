@@ -32,22 +32,61 @@ st.markdown("""
     font-size: 12px; color: rgba(255,255,255,.3);
     letter-spacing: 3px; text-transform: uppercase; margin-bottom: 52px;
 }
-.up-zone {
-    max-width: 500px; margin: 0 auto 20px;
-    background: rgba(255,255,255,.04);
-    border: 1.5px dashed rgba(255,255,255,.18);
-    border-radius: 20px; padding: 48px 36px; text-align: center;
-    cursor: pointer; transition: all .22s;
-}
-.up-zone:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.07); }
-.up-icon { font-size: 48px; margin-bottom: 14px; }
-.up-main { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-.up-hint { font-size: 12px; color: rgba(255,255,255,.35); }
 .req-note {
     font-size: 11px; color: rgba(255,255,255,.22);
     text-align: center; line-height: 2; margin-top: 32px;
 }
 .req-note strong { color: rgba(255,255,255,.5); }
+
+/* ── File uploader — big styled zone ── */
+[data-testid="stFileUploader"] {
+    max-width: 500px;
+    margin: 0 auto 20px !important;
+}
+[data-testid="stFileUploaderDropzone"] {
+    background: rgba(255,255,255,.04) !important;
+    border: 1.5px dashed rgba(255,255,255,.35) !important;
+    border-radius: 20px !important;
+    padding: 48px 36px !important;
+    text-align: center !important;
+    transition: all .22s !important;
+}
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: rgba(255,255,255,.55) !important;
+    background: rgba(255,255,255,.07) !important;
+}
+[data-testid="stFileUploaderDropzoneInstructions"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+[data-testid="stFileUploaderDropzoneInstructions"]::before {
+    content: "📁";
+    font-size: 48px;
+    display: block;
+    margin-bottom: 10px;
+}
+[data-testid="stFileUploaderDropzoneInstructions"] span {
+    color: rgba(255,255,255,.85) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+[data-testid="stFileUploaderDropzoneInstructions"] small {
+    color: rgba(255,255,255,.4) !important;
+    font-size: 12px !important;
+}
+[data-testid="stFileUploader"] button {
+    background: rgba(255,255,255,.12) !important;
+    color: rgba(255,255,255,.9) !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    border-radius: 8px !important;
+    margin-top: 8px !important;
+}
+[data-testid="stFileUploader"] button:hover {
+    background: rgba(255,255,255,.22) !important;
+    border-color: rgba(255,255,255,.5) !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -60,14 +99,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── FILE UPLOADER ─────────────────────────────────────────────────────────────
-st.markdown("""
-<div class="up-zone">
-  <div class="up-icon">📁</div>
-  <div class="up-main">Upload Your Dataset</div>
-  <div class="up-hint">Supports .xlsx / .xls / .csv</div>
-</div>
-""", unsafe_allow_html=True)
-
 uploaded = st.file_uploader(
     "Drop your file here",
     type=["xlsx", "xls", "csv"],
